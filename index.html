@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIF Academy | Digital Learning Solution for Financial Service Providers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0c2340',
+                            navyDark: '#081728',
+                            teal: '#0d9488',
+                            tealLight: '#2dd4bf',
+                            tealBg: '#f0fdf4',
+                            sky: '#0284c7',
+                            accent: '#f59e0b',
+                            slateDark: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            font-size: 112.5%; /* Scaled base font size */
+        }
+        .glass-header {
+            background: rgba(12, 35, 64, 0.95);
+            backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #2dd4bf 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -3px rgba(12, 35, 64, 0.08), 0 4px 6px -2px rgba(12, 35, 64, 0.04);
+        }
+        .card-shadow-hover:hover {
+            box-shadow: 0 20px 35px -5px rgba(13, 148, 136, 0.15), 0 10px 10px -5px rgba(13, 148, 136, 0.04);
+            transform: translateY(-4px);
+        }
+        
+        .faq-answer.hidden {
+            display: none !important;
+        }
+
+        @media print {
+            header, #mobile-menu, #mobile-menu-btn, .no-print {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                padding-top: 0 !important;
+            }
+            section {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+                page-break-inside: avoid;
+            }
+            .faq-answer.hidden {
+                display: block !important;
+            }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-teal selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-slate-700/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 sm:h-22">
+                <!-- Brand Logo & Partner Branding -->
+                <div class="flex items-center gap-3">
+                    <a href="#" class="flex items-center gap-3 group">
+                        <img src="rif+gr_logo.png" alt="Good Return & RIF Academy" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/180x50/081728/2dd4bf?text=Good+Return+|+RIF+Academy';">
+                    </a>
+                </div>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden lg:flex items-center gap-6 xl:gap-7 text-xs sm:text-sm font-semibold text-slate-200">
+                    <a href="#overview" class="hover:text-brand-tealLight transition-colors">Context</a>
+                    <a href="#savings-comparison" class="hover:text-brand-tealLight transition-colors">Cost Savings</a>
+                    <a href="#ecourse-dev" class="hover:text-brand-tealLight transition-colors">eCourse Dev</a>
+                    <a href="#challenge" class="hover:text-brand-tealLight transition-colors">Onboarding</a>
+                    <a href="#features" class="hover:text-brand-tealLight transition-colors">Features</a>
+                    <a href="#roi" class="hover:text-brand-tealLight transition-colors">ROI</a>
+                    <a href="#pricing" class="hover:text-brand-tealLight transition-colors">Pricing</a>
+                    <a href="#faq" class="hover:text-brand-tealLight transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Action Buttons -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="window.print()" class="no-print bg-slate-800/80 hover:bg-slate-700 text-slate-100 border border-slate-600/80 font-heading font-semibold text-xs px-3.5 py-2.5 rounded-xl transition-all duration-200 hover:scale-[1.02] flex items-center gap-1.5 cursor-pointer shadow-sm">
+                        <i class="fa-solid fa-file-pdf text-brand-tealLight text-sm"></i>
+                        <span>Print PDF</span>
+                    </button>
+                    <a href="mailto:rifacademy@goodreturn.org" class="no-print bg-gradient-to-r from-brand-teal to-teal-600 hover:from-teal-600 hover:to-brand-teal text-white font-heading font-semibold text-xs px-4 py-2.5 rounded-xl shadow-md shadow-brand-teal/20 transition-all duration-200 hover:scale-[1.02] flex items-center gap-1.5">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                        <span>Contact Us</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-200 hover:text-white text-2xl p-2" aria-label="Toggle mobile menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-navyDark border-b border-slate-700 px-5 pt-4 pb-7 space-y-3.5 text-sm">
+            <a href="#overview" class="block text-slate-200 hover:text-brand-tealLight py-1.5">Strategic Context</a>
+            <a href="#savings-comparison" class="block text-slate-200 hover:text-brand-tealLight py-1.5">Cost Savings vs Classroom</a>
+            <a href="#ecourse-dev" class="block text-slate-200 hover:text-brand-tealLight py-1.5">In-House eCourse Development</a>
+            <a href="#challenge" class="block text-slate-200 hover:text-brand-tealLight py-1.5">Onboarding & Turnover</a>
+            <a href="#features" class="block text-slate-200 hover:text-brand-tealLight py-1.5">Enterprise Features</a>
+            <a href="#roi" class="block text-slate-200 hover:text-brand-tealLight py-1.5">Business ROI & Calculator</a>
+            <a href="#pricing" class="block text-slate-200 hover:text-brand-tealLight py-1.5">Pricing & Plans</a>
+            <a href="#faq" class="block text-slate-200 hover:text-brand-tealLight py-1.5">Frequently Asked Questions</a>
+            <div class="pt-3 border-t border-slate-700 flex flex-col gap-2.5">
+                <a href="mailto:rifacademy@goodreturn.org" class="text-brand-tealLight font-bold hover:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-envelope"></i> rifacademy@goodreturn.org
+                </a>
+                <button onclick="window.print()" class="text-slate-300 font-semibold hover:text-white text-left flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf"></i> Print to PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-brand-navy via-brand-navyDark to-slate-900 text-white pt-32 sm:pt-36 pb-24 sm:pb-28 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#0d9488_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+        <div class="absolute top-1/4 -right-20 w-96 h-96 bg-brand-teal/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 -left-20 w-96 h-96 bg-brand-sky/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                <!-- Left Column Text Content -->
+                <div class="lg:col-span-7 space-y-6 sm:space-y-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2.5 bg-brand-teal/20 border border-brand-teal/40 px-4 sm:px-5 py-2 rounded-full text-brand-tealLight text-xs sm:text-sm font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-graduation-cap text-sm sm:text-base"></i> A Flagship Program of Good Return
+                    </div>
+
+                    <h1 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Transforming Workforce <br class="hidden sm:inline"><span class="gradient-text">Capacity at Scale</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl lg:text-2xl text-slate-200 font-light max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                        A customized, enterprise-grade e-learning engine powered by top e-learning platforms to complement or significantly reduce reliance on classroom training, standardize credit evaluation, and cut branch operational costs across Financial Service Providers (FSPs).
+                    </p>
+
+                    <!-- Key Stats Quick Strip -->
+                    <div class="grid grid-cols-2 gap-6 pt-5 border-t border-slate-700/60 max-w-xl mx-auto lg:mx-0">
+                        <div class="text-center lg:text-left">
+                            <div class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-tealLight">Departments & Branches</div>
+                            <div class="text-xs sm:text-sm text-slate-300 mt-1">Connecting Central Departments & Branch Hubs</div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <div class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-emerald-400">60–80%</div>
+                            <div class="text-xs sm:text-sm text-slate-300 mt-1">Time & Cost Savings</div>
+                            <div class="text-[11px] text-slate-400 mt-1.5 italic leading-snug">
+                                <i class="fa-solid fa-book-bookmark text-brand-tealLight mr-1"></i> Based on research benchmarks from Brandon Hall Group (2024)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="pt-3 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#savings-comparison" class="bg-brand-teal hover:bg-teal-600 text-white font-heading font-bold text-base sm:text-lg px-7 py-3.5 sm:py-4 rounded-xl shadow-lg shadow-brand-teal/25 text-center transition-all hover:scale-[1.02]">
+                            View Cost Savings <i class="fa-solid fa-arrow-down ml-2 text-sm"></i>
+                        </a>
+                        <a href="#ecourse-dev" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 font-heading font-bold text-base sm:text-lg px-7 py-3.5 sm:py-4 rounded-xl text-center transition-all">
+                            eCourse Creation Coaching
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column Embedded YouTube Video Showcase -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-2xl p-2.5 bg-gradient-to-b from-slate-700 to-slate-800 border border-slate-700 shadow-2xl">
+                        <div class="relative rounded-xl overflow-hidden bg-slate-900 aspect-video shadow-inner">
+                            <iframe 
+                                class="w-full h-full min-h-[220px] sm:min-h-[280px] rounded-lg" 
+                                src="https://www.youtube.com/embed/DsWGBTAH0xI" 
+                                title="RIF Academy Overview Video" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-4 sm:p-5 text-white space-y-2">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="bg-brand-teal text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Program Video</span>
+                                <span class="text-xs text-brand-tealLight font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-play"></i> 3 Min Watch</span>
+                            </div>
+                            <h3 class="font-heading text-lg sm:text-xl font-bold">Watch: RIF Academy Overview</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Discover how digital micro-learning transforms financial sector capacity building and empowers field officers in rural branches.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Strategic Context & Operational Landscape -->
+    <section id="overview" class="py-20 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4">
+                <span class="text-brand-teal font-heading font-bold text-xs sm:text-sm uppercase tracking-widest bg-brand-tealBg border border-teal-200 px-4 py-1.5 rounded-full">Strategic Context</span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy">Understanding the HR & Operational Landscape</h2>
+                <p class="text-slate-600 text-base sm:text-lg lg:text-xl">Aligning digital learning and capacity building with Financial Service Providers' organizational growth and branch footprint.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 sm:p-9 card-shadow transition-all duration-300 card-shadow-hover border-t-4 border-t-brand-navy flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-slate-200 text-brand-navy flex items-center justify-center text-2xl sm:text-3xl mb-6">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl sm:text-2xl text-brand-navy mb-3">Branch Network Reach</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">Supporting field and office staff spread across regional and provincial branch hubs.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 text-xs sm:text-sm font-bold text-brand-navy flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot text-brand-teal text-sm sm:text-base"></i> Regional Branch Hubs Connected
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 sm:p-9 card-shadow transition-all duration-300 card-shadow-hover border-t-4 border-t-brand-teal flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-teal-100 text-brand-teal flex items-center justify-center text-2xl sm:text-3xl mb-6">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl sm:text-2xl text-brand-navy mb-3">Shift to Digital Banking</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">Training field credit teams and loan officers on centralized credit evaluation, digital loan applications, and modernized workflows.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 text-xs sm:text-sm font-bold text-brand-teal flex items-center gap-2">
+                        <i class="fa-solid fa-mobile-screen-button text-brand-teal text-sm sm:text-base"></i> Digital Credit Evaluation
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 sm:p-9 card-shadow transition-all duration-300 card-shadow-hover border-t-4 border-t-brand-sky flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-sky-100 text-brand-sky flex items-center justify-center text-2xl sm:text-3xl mb-6">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl sm:text-2xl text-brand-navy mb-3">Social Performance & SPM</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">Serving rural communities and female micro-entrepreneurs while upholding strict international Client Protection Principles (CPP).</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 text-xs sm:text-sm font-bold text-brand-sky flex items-center gap-2">
+                        <i class="fa-solid fa-certificate text-brand-sky text-sm sm:text-base"></i> Regulatory & CPP Compliance
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core HR Challenge Banner -->
+            <div class="mt-12 sm:mt-14 bg-rose-50 border border-rose-200 rounded-2xl p-7 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
+                <div class="flex items-start gap-4 sm:gap-5">
+                    <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-rose-100 text-rose-600 flex-shrink-0 flex items-center justify-center text-2xl sm:text-3xl font-bold">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-heading font-bold text-rose-900 text-xl sm:text-2xl">The Core HR Challenge</h4>
+                        <p class="text-rose-800 text-sm sm:text-base lg:text-lg leading-relaxed mt-1">Delivering consistent, high-quality training across widely dispersed rural branches without heavy travel budgets, lodging expenses, or classroom downtime for active loan officers.</p>
+                    </div>
+                </div>
+                <a href="#savings-comparison" class="bg-rose-600 hover:bg-rose-700 text-white font-heading text-sm sm:text-base font-bold px-6 py-3.5 sm:py-4 rounded-xl whitespace-nowrap shadow-md shadow-rose-200 transition-all self-start md:self-auto">
+                    See How We Solve This <i class="fa-solid fa-arrow-down ml-2 text-xs sm:text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Savings Matrix -->
+    <section id="savings-comparison" class="py-20 sm:py-24 bg-slate-900 text-white border-y border-slate-800 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4">
+                <span class="text-brand-tealLight font-heading font-bold text-xs sm:text-sm uppercase tracking-widest bg-brand-teal/20 border border-brand-teal/40 px-4 py-1.5 rounded-full">
+                    <i class="fa-solid fa-piggy-bank mr-1.5"></i> Cost & Resource Optimization
+                </span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">Digital eLearning vs. Traditional Face-to-Face Training</h2>
+                <p class="text-slate-300 text-base sm:text-lg lg:text-xl">How RIF Academy eliminates heavy classroom logistics, travel costs, and staff downtime.</p>
+            </div>
+
+            <!-- 4 Pillar Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 mb-14 sm:mb-16">
+                
+                <!-- Pillar 1: Save Resources -->
+                <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-7 space-y-3.5 hover:border-brand-teal transition-all flex flex-col justify-between">
+                    <div class="space-y-3.5">
+                        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-2xl sm:text-3xl font-bold">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg sm:text-xl text-white">1. Save Resources</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Dramatically reduces the need for classroom-based logistics, venue rentals, per diems, lodging, and travel expenses across regional branch networks.</p>
+                    </div>
+                    <div class="text-xs sm:text-sm text-emerald-400 font-bold pt-3 border-t border-slate-700 mt-2">
+                        <i class="fa-solid fa-circle-check mr-1.5"></i> Cut travel & venue costs by 70%+
+                    </div>
+                </div>
+
+                <!-- Pillar 2: Scale & Reach -->
+                <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-7 space-y-3.5 hover:border-brand-teal transition-all flex flex-col justify-between">
+                    <div class="space-y-3.5">
+                        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-brand-teal/20 text-brand-tealLight border border-brand-teal/30 flex items-center justify-center text-2xl sm:text-3xl font-bold">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg sm:text-xl text-white">2. Scale & Reach</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Training is accessible to anyone, anywhere, anytime on iOS, Android, or desktop—even offline in remote rural branches.</p>
+                    </div>
+                    <div class="text-xs sm:text-sm text-brand-tealLight font-bold pt-3 border-t border-slate-700 mt-2">
+                        <i class="fa-solid fa-circle-check mr-1.5"></i> 100% Branch coverage instantly
+                    </div>
+                </div>
+
+                <!-- Pillar 3: Improve Pedagogy -->
+                <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-7 space-y-3.5 hover:border-brand-teal transition-all flex flex-col justify-between">
+                    <div class="space-y-3.5">
+                        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-sky-500/20 text-sky-400 border border-sky-500/30 flex items-center justify-center text-2xl sm:text-3xl font-bold">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg sm:text-xl text-white">3. Improve Pedagogy</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Standardized, high-quality learning materials curated by financial sector subject matter experts, replacing inconsistent peer shadowing.</p>
+                    </div>
+                    <div class="text-xs sm:text-sm text-sky-400 font-bold pt-3 border-t border-slate-700 mt-2">
+                        <i class="fa-solid fa-circle-check mr-1.5"></i> Standardized credit risk quality
+                    </div>
+                </div>
+
+                <!-- Pillar 4: Monitor Results -->
+                <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-7 space-y-3.5 hover:border-brand-teal transition-all flex flex-col justify-between">
+                    <div class="space-y-3.5">
+                        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center text-2xl sm:text-3xl font-bold">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg sm:text-xl text-white">4. Monitor Results</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Automated real-time analytics to track learner progress, evaluate quiz scores, and instantly identify knowledge gaps across teams.</p>
+                    </div>
+                    <div class="text-xs sm:text-sm text-purple-400 font-bold pt-3 border-t border-slate-700 mt-2">
+                        <i class="fa-solid fa-circle-check mr-1.5"></i> Automated SPM & CPP compliance
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Side-by-Side Detailed Breakdown Table -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="p-6 sm:p-7 bg-brand-navy border-b border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-heading font-bold text-xl sm:text-2xl text-white">Cost Driver Comparison Matrix</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Comparing traditional classroom training against RIF Academy digital learning.</p>
+                    </div>
+                    <span class="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-bold px-3.5 py-2 rounded-full self-start sm:self-auto">
+                        <i class="fa-solid fa-bolt mr-1.5"></i> Significant Cost & Resource Reductions
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm md:text-base">
+                        <thead class="bg-slate-900 text-slate-300 font-heading text-xs uppercase tracking-wider">
+                            <tr>
+                                <th class="p-4 sm:p-6 text-xs sm:text-sm">Cost & Resource Category</th>
+                                <th class="p-4 sm:p-6 text-rose-400 text-xs sm:text-sm"><i class="fa-solid fa-xmark mr-1"></i> Traditional Face-to-Face Training</th>
+                                <th class="p-4 sm:p-6 text-brand-tealLight text-xs sm:text-sm"><i class="fa-solid fa-check mr-1"></i> RIF Academy Digital Solution</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700/60 text-slate-200">
+                            <tr class="hover:bg-slate-700/40 transition-colors">
+                                <td class="p-4 sm:p-6 font-bold text-white">Travel & Transportation</td>
+                                <td class="p-4 sm:p-6 text-rose-300">High ongoing costs to transport remote officers from regional branches to central hubs.</td>
+                                <td class="p-4 sm:p-6 text-brand-tealLight font-semibold">Zero Travel Required: Staff complete modules directly at their local branch or on mobile devices.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 transition-colors">
+                                <td class="p-4 sm:p-6 font-bold text-white">Accommodation & Meals</td>
+                                <td class="p-4 sm:p-6 text-rose-300">Expensive hotel stays, per diems, and catering fees for multi-day group workshops.</td>
+                                <td class="p-4 sm:p-6 text-brand-tealLight font-semibold">Zero Lodging Expense: 100% self-paced digital learning eliminates overnight stays.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 transition-colors">
+                                <td class="p-4 sm:p-6 font-bold text-white">Field Officer Downtime</td>
+                                <td class="p-4 sm:p-6 text-rose-300">3–5 days out of the field per session, delaying client loan disbursements and credit reviews.</td>
+                                <td class="p-4 sm:p-6 text-brand-tealLight font-semibold">Bite-Sized Mobile Learning: Staff study 15–20 mins/day without disrupting field duties.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 transition-colors">
+                                <td class="p-4 sm:p-6 font-bold text-white">Trainer & Venue Rental</td>
+                                <td class="p-4 sm:p-6 text-rose-300">Recurring room rental, printing, equipment rental, and instructor honorarium costs for every intake.</td>
+                                <td class="p-4 sm:p-6 text-brand-tealLight font-semibold">Reusable eCourses: Build eCourses once and deliver to unlimited new hires at zero marginal cost.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 transition-colors">
+                                <td class="p-4 sm:p-6 font-bold text-white">Tracking & Compliance Audit</td>
+                                <td class="p-4 sm:p-6 text-rose-300">Manual paper sign-in sheets, fragmented records, and difficult SPM/CPP audit preparation.</td>
+                                <td class="p-4 sm:p-6 text-brand-tealLight font-semibold">Automated Digital Records: One-click exportable compliance logs for auditors.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-slate-800/80 border border-slate-700 rounded-2xl p-6 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <div class="font-heading font-bold text-brand-tealLight text-sm sm:text-base mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-book-bookmark"></i> Research Citation & Reference Basis
+                </div>
+                <p>
+                    The cost reduction model is based on global research benchmarks from <strong>Brandon Hall Group</strong> (<em>"L&D in 2025: Why Companies Are Betting Big on Microlearning"</em>, November 2024):
+                </p>
+                <ul class="list-disc list-inside mt-2 space-y-1 text-slate-300">
+                    <li><strong>High Baseline Classroom Costs:</strong> Traditional in-person courses cost ~$14,000 and take up to 57 hours to develop.</li>
+                    <li><strong>Development Timeline Savings:</strong> Digital microlearning cuts course creation timelines by up to 80% and increases delivery efficiency by 55%.</li>
+                    <li><strong>Routine L&D Time Reduction:</strong> Modern L&D tools reduce routine content development tasks by 60%–80%.</li>
+                    <li><strong>Maintenance & Operational Costs:</strong> System maintenance costs drop by 50%–60%, allowing L&D teams to reallocate budget directly to strategic initiatives.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: eCourse Development & In-House Capability Building -->
+    <section id="ecourse-dev" class="py-20 sm:py-24 bg-gradient-to-b from-white to-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4">
+                <span class="text-brand-teal font-heading font-bold text-xs sm:text-sm uppercase tracking-widest bg-brand-tealBg border border-teal-200 px-4 py-1.5 rounded-full">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i> In-House Capability Building
+                </span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy">Create Your Own Custom eCourses In-House</h2>
+                <p class="text-slate-600 text-base sm:text-lg lg:text-xl">FSPs gain the complete capability and tools to independently build, digitize, and update operational eCourses internally through hands-on coaching.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+                <!-- Left Feature Column (7 cols) -->
+                <div class="lg:col-span-7 space-y-6 flex flex-col justify-between">
+                    <!-- Explicit FSP Capability Highlight Banner -->
+                    <div class="bg-emerald-50 border-2 border-emerald-400/80 rounded-2xl p-6 shadow-sm flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-md">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold text-emerald-950 text-lg sm:text-xl">Your Institution's Freedom & Capability</h4>
+                            <p class="text-emerald-900 text-xs sm:text-sm mt-1 font-medium leading-relaxed">
+                                Financial Service Providers (FSPs) have the full possibility and independence to build, launch, and manage their own proprietary eCourses internally without relying on external vendors.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200 card-shadow space-y-4 border-l-4 border-l-brand-teal">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-teal-100 text-brand-teal flex items-center justify-center text-xl font-bold flex-shrink-0">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-lg sm:text-xl text-brand-navy">Structured Training & Instructional Design Coaching</h3>
+                                <p class="text-xs text-slate-500">From Raw Policy Manuals to Engaging Digital Modules</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                            Good Return provides hands-on coaching and training workshops that guide your internal trainers and HR managers step-by-step through creating and publishing your own custom eCourses:
+                        </p>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 pt-1">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-0.5"></i>
+                                <span><strong>Create Custom eCourses:</strong> Build custom courses specific to your FSP's credit products, regional policies, and branch workflows.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-0.5"></i>
+                                <span><strong>Digitize SOP Manuals & PDFs:</strong> Convert dense operational PDFs and credit manuals into interactive micro-lessons.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-0.5"></i>
+                                <span><strong>Structure Quizzes & Roleplays:</strong> Embed scenario-based client evaluations, test checks, and pass/fail certificates.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-0.5"></i>
+                                <span><strong>Utilize AI Authoring Tools:</strong> Leverage integrated TalentCraft AI tools for fast video captions, graphics, and multi-language translations.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 card-shadow space-y-1.5">
+                            <div class="text-brand-teal font-heading font-bold text-xl sm:text-2xl">100% In-House</div>
+                            <h4 class="font-heading font-bold text-sm sm:text-base text-brand-navy">Full Intellectual Ownership</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">Update policies, refresh guidelines, or launch new product eCourses internally whenever operational needs change.</p>
+                        </div>
+
+                        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 card-shadow space-y-1.5">
+                            <div class="text-brand-sky font-heading font-bold text-xl sm:text-2xl">Coaching Included</div>
+                            <h4 class="font-heading font-bold text-sm sm:text-base text-brand-navy">Initial Course Conversion</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">Good Return co-creates your first custom eCourse with your team as part of the startup implementation package.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Graphic Highlight (5 cols) -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-brand-navy to-brand-navyDark text-white p-7 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6 flex flex-col justify-between">
+                    <div class="space-y-5">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-teal/20 text-brand-tealLight border border-brand-teal/30 flex items-center justify-center text-3xl font-bold">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+
+                        <h3 class="font-heading font-bold text-xl sm:text-2xl text-white">How In-House eCourse Creation Works</h3>
+
+                        <div class="space-y-4 text-xs sm:text-sm">
+                            <div class="flex gap-3.5 items-start">
+                                <div class="w-7 h-7 rounded-full bg-brand-teal text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">1</div>
+                                <div>
+                                    <strong class="text-brand-tealLight block font-semibold text-sm">3-Day Hands-on Workshop</strong>
+                                    <span class="text-slate-300">HR and training personnel learn LMS administration, user management, and module authoring.</span>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3.5 items-start">
+                                <div class="w-7 h-7 rounded-full bg-brand-teal text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">2</div>
+                                <div>
+                                    <strong class="text-brand-tealLight block font-semibold text-sm">1-on-1 Instructional Design Coaching</strong>
+                                    <span class="text-slate-300">Good Return specialists co-design your institution's first operational eCourse alongside your subject matter experts.</span>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3.5 items-start">
+                                <div class="w-7 h-7 rounded-full bg-brand-teal text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">3</div>
+                                <div>
+                                    <strong class="text-brand-tealLight block font-semibold text-sm">Independent Capacity & Scaling</strong>
+                                    <span class="text-slate-300">Your L&D team gains total independence to publish unlimited new modules across branch networks.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800 text-xs text-brand-tealLight font-semibold flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check"></i> Sustainable internal capacity building for lasting FSP growth.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Onboarding & Turnover Section -->
+    <section id="challenge" class="py-20 sm:py-24 bg-slate-100 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4">
+                <span class="text-brand-teal font-heading font-bold text-xs sm:text-sm uppercase tracking-widest bg-white border border-slate-300 px-4 py-1.5 rounded-full">Operational Efficiency</span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy">Solving the Onboarding & Turnover Challenge</h2>
+                <p class="text-slate-600 text-base sm:text-lg lg:text-xl">Transforming high turnover friction into immediate day-one field readiness.</p>
+            </div>
+
+            <!-- Comparison Grid: Before vs After -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Left: Friction Points -->
+                <div class="bg-white rounded-2xl p-7 sm:p-9 border-t-4 border-t-rose-500 card-shadow space-y-6 sm:space-y-7 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 pb-5 border-b border-slate-100 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-lg sm:text-xl text-brand-navy">Turnover Reality & Bottlenecks</h3>
+                                <p class="text-xs sm:text-sm text-slate-500">Current Traditional Approach</p>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-4 sm:space-y-5 text-xs sm:text-sm lg:text-base text-slate-700">
+                            <li class="flex items-start gap-3.5">
+                                <i class="fa-solid fa-circle-minus text-rose-500 mt-1 text-base sm:text-lg"></i>
+                                <div>
+                                    <strong class="font-bold text-slate-900">High Industry Turnover:</strong> Field officer turnover in financial services forces HR to manually retrain staff one by one.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3.5">
+                                <i class="fa-solid fa-circle-minus text-rose-500 mt-1 text-base sm:text-lg"></i>
+                                <div>
+                                    <strong class="font-bold text-slate-900">Classroom Waiting Periods:</strong> New hires often wait weeks for centralized group orientation sessions or rely solely on informal peer shadowing.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3.5">
+                                <i class="fa-solid fa-circle-minus text-rose-500 mt-1 text-base sm:text-lg"></i>
+                                <div>
+                                    <strong class="font-bold text-slate-900">High Travel & Lodging Costs:</strong> Transporting remote branch staff to central locations burns HR operational budgets.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right: Digital Academy Solution -->
+                <div class="bg-white rounded-2xl p-7 sm:p-9 border-t-4 border-t-brand-teal card-shadow space-y-6 sm:space-y-7 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 pb-5 border-b border-slate-100 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-teal-100 text-brand-teal flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-lg sm:text-xl text-brand-navy">Day-One Readiness & Automation</h3>
+                                <p class="text-xs sm:text-sm text-brand-teal font-bold">Targeted RIF Academy Solution</p>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-4 sm:space-y-5 text-xs sm:text-sm lg:text-base text-slate-700">
+                            <li class="flex items-start gap-3.5">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-1 text-base sm:text-lg"></i>
+                                <div>
+                                    <strong class="font-bold text-slate-900">Instant Day-One Access:</strong> New hires log into standardized orientation, compliance, and credit risk modules immediately at their local branch.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3.5">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-1 text-base sm:text-lg"></i>
+                                <div>
+                                    <strong class="font-bold text-slate-900">Relieving Manager Overhead:</strong> Automates repetitive core lectures so branch managers can focus on portfolio growth and coaching.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3.5">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-1 text-base sm:text-lg"></i>
+                                <div>
+                                    <strong class="font-bold text-slate-900">Consistent Standardized Quality:</strong> Ensures every Credit Officer across all branch hubs learns the exact same credit evaluation standard.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Time Savings Banner -->
+            <div class="mt-10 bg-gradient-to-r from-brand-navy to-brand-navyDark text-white rounded-2xl p-7 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-8 shadow-xl">
+                <div class="flex items-center gap-4 sm:gap-5">
+                    <div class="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-brand-teal/20 text-brand-tealLight border border-brand-teal/30 flex items-center justify-center text-3xl sm:text-4xl font-bold flex-shrink-0">
+                        <i class="fa-solid fa-clock font-bold"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs sm:text-sm text-brand-tealLight font-bold uppercase tracking-wider">Key Operational Impact</span>
+                        <h4 class="font-heading text-xl sm:text-2xl lg:text-3xl font-bold mt-0.5">Cuts Time-to-Competency by 50%+</h4>
+                        <p class="text-slate-300 text-xs sm:text-base mt-1">Gets new Credit Officers field-ready in days instead of weeks while maintaining strict underwriting standards.</p>
+                    </div>
+                </div>
+                <div class="bg-brand-teal text-white font-heading font-extrabold text-xl sm:text-2xl px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl whitespace-nowrap shadow-md self-start sm:self-auto">
+                    50% Faster
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-20 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4">
+                <span class="text-brand-teal font-heading font-bold text-xs sm:text-sm uppercase tracking-widest bg-brand-tealBg border border-teal-200 px-4 py-1.5 rounded-full">Full Capabilities</span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy">Enterprise & AI Feature Suite for HR Teams</h2>
+                <p class="text-slate-600 text-base sm:text-lg lg:text-xl">Comprehensive platform capabilities tailored for financial institution talent development.</p>
+            </div>
+
+            <!-- Feature Matrix Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
+                
+                <!-- Category 1: AI & Content Engine -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-7 card-shadow card-shadow-hover border-t-4 border-t-brand-teal transition-all">
+                    <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-teal-100 text-brand-teal flex items-center justify-center text-xl sm:text-2xl font-bold mb-5 sm:mb-6">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg sm:text-xl text-brand-navy mb-3.5">AI & Content Engine</h3>
+                    <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
+                            <div><strong class="text-slate-900">TalentCraft Premium:</strong> AI content authoring assistance</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
+                            <div><strong class="text-slate-900">AI Media Gen:</strong> Auto-generated images & video clips</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
+                            <div><strong class="text-slate-900">Auto Captions & Tests:</strong> Auto video captions & quiz creation</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
+                            <div><strong class="text-slate-900">AI Translations:</strong> Instant multi-language course translation</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
+                            <div><strong class="text-slate-900">AI Coach:</strong> On-demand interactive guidance for learners</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 2: Branding & Architecture -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-7 card-shadow card-shadow-hover border-t-4 border-t-brand-navy transition-all">
+                    <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-slate-200 text-brand-navy flex items-center justify-center text-xl sm:text-2xl mb-5 sm:mb-6">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg sm:text-xl text-brand-navy mb-3.5">Branding & Architecture</h3>
+                    <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-navy mt-0.5"></i>
+                            <div><strong class="text-slate-900">Branch Network Reach:</strong> Sub-teams & branch supervisors</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-navy mt-0.5"></i>
+                            <div><strong class="text-slate-900">Custom Branding:</strong> Homepage, custom domain & SSL</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-navy mt-0.5"></i>
+                            <div><strong class="text-slate-900">White-Labeling:</strong> Complete removal of platform logo</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-navy mt-0.5"></i>
+                            <div><strong class="text-slate-900">Smart Automations:</strong> Automated enrollments & course reminders</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-navy mt-0.5"></i>
+                            <div><strong class="text-slate-900">Unlimited Capacity:</strong> Zero caps on courses or learning paths</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 3: Security & Tech Stack -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-7 card-shadow card-shadow-hover border-t-4 border-t-brand-sky transition-all">
+                    <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-sky-100 text-brand-sky flex items-center justify-center text-xl sm:text-2xl font-bold mb-5 sm:mb-6">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg sm:text-xl text-brand-navy mb-3.5">Security & Tech Stack</h3>
+                    <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-sky mt-0.5"></i>
+                            <div><strong class="text-slate-900">Single Sign-On (SSO):</strong> Secure enterprise login (SAML 2.0 / Okta / Active Directory)</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-sky mt-0.5"></i>
+                            <div><strong class="text-slate-900">REST API Access:</strong> Direct sync with internal HRIS & IT systems</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-sky mt-0.5"></i>
+                            <div><strong class="text-slate-900">LTI 1.3 Support:</strong> External tool interoperability</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-sky mt-0.5"></i>
+                            <div><strong class="text-slate-900">HubSpot Integration:</strong> CRM & contact synchronization</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-brand-sky mt-0.5"></i>
+                            <div><strong class="text-slate-900">Enterprise Support:</strong> Dedicated onboarding & helpdesk</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 4: Analytics, Skills & Engagement -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-7 card-shadow card-shadow-hover border-t-4 border-t-purple-600 transition-all">
+                    <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl sm:text-2xl font-bold mb-5 sm:mb-6">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg sm:text-xl text-brand-navy mb-3.5">Analytics & Skills</h3>
+                    <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-purple-600 mt-0.5"></i>
+                            <div><strong class="text-slate-900">Custom Reports:</strong> Exportable compliance & progress logs</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-purple-600 mt-0.5"></i>
+                            <div><strong class="text-slate-900">Skill Tracking:</strong> Staff capability gap mapping</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-purple-600 mt-0.5"></i>
+                            <div><strong class="text-slate-900">Learning Playground:</strong> Gamified leaderboards, points, and badges</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-purple-600 mt-0.5"></i>
+                            <div><strong class="text-slate-900">Group Supervisors:</strong> Branch-level supervisor access</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-purple-600 mt-0.5"></i>
+                            <div><strong class="text-slate-900">Certificates:</strong> Automated completion certificates</div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Section -->
+    <section id="roi" class="py-20 sm:py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4">
+                <span class="text-brand-tealLight font-heading font-bold text-xs sm:text-sm uppercase tracking-widest bg-brand-teal/20 border border-brand-teal/40 px-4 py-1.5 rounded-full">Business Value</span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">Strategic HR Impact & Operational ROI</h2>
+                <p class="text-slate-300 text-base sm:text-lg lg:text-xl">Measurable return on investment across workforce efficiency, compliance, and credit risk control.</p>
+            </div>
+
+            <!-- ROI Matrix Table -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl mb-12 sm:mb-16">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-base lg:text-lg">
+                        <thead class="bg-brand-navy text-2xs sm:text-xs lg:text-sm uppercase tracking-wider text-slate-200 font-heading border-b border-slate-700">
+                            <tr>
+                                <th class="p-4 sm:p-6 text-brand-tealLight"><i class="fa-solid fa-sliders mr-2"></i> HR Operational Driver</th>
+                                <th class="p-4 sm:p-6 text-brand-tealLight"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Enabled Feature</th>
+                                <th class="p-4 sm:p-6 text-brand-tealLight"><i class="fa-solid fa-bullseye mr-2"></i> Measurable Business ROI</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700/60 text-slate-200">
+                            <tr class="hover:bg-slate-700/40 transition-colors">
+                                <td class="p-4 sm:p-6 font-bold text-white">Accelerated Onboarding</td>
+                                <td class="p-4 sm:p-6 text-brand-tealLight font-semibold">Automation, TalentCraft AI & Mobile Offline App</td>
+                                <td class="p-4 sm:p-6 text-slate-100">Cuts time-to-competency for new Credit Officers by 50%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 transition-colors">
+                                <td class="p-4 sm:p-6 font-bold text-white">Standardized Credit Quality</td>
+                                <td class="p-4 sm:p-6 text-brand-tealLight font-semibold">Unlimited Learning Paths & Skill Tracking</td>
+                                <td class="p-4 sm:p-6 text-slate-100">Improves portfolio quality through standardized credit assessment across all regional branches.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 transition-colors">
+                                <td class="p-4 sm:p-6 font-bold text-white">Automated Compliance</td>
+                                <td class="p-4 sm:p-6 text-brand-tealLight font-semibold">Custom Reports, SSO Security & Group Supervisors</td>
+                                <td class="p-4 sm:p-6 text-slate-100">Meets SPM, Regulatory, and CPP Audit Requirements effortlessly</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 transition-colors">
+                                <td class="p-4 sm:p-6 font-bold text-white">Staff Engagement & Retention</td>
+                                <td class="p-4 sm:p-6 text-brand-tealLight font-semibold">Learning Playground (Gamification) & AI Coach</td>
+                                <td class="p-4 sm:p-6 text-slate-100">Reduces turnover and boosts internal promotion velocity</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Interactive Onboarding Savings Estimator Box -->
+            <div class="bg-gradient-to-r from-slate-800 to-brand-navy border border-brand-teal/40 rounded-2xl p-7 sm:p-10 shadow-2xl">
+                <div class="max-w-3xl">
+                    <span class="text-xs sm:text-sm text-brand-tealLight font-bold uppercase tracking-wider"><i class="fa-solid fa-calculator mr-1.5"></i> Interactive Estimator</span>
+                    <h3 class="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-white mt-1.5">Estimate FSP Annual Onboarding Savings</h3>
+                    <p class="text-sm sm:text-base text-slate-300 mt-1">Adjust staff turnover count to estimate reduced travel & classroom downtime savings:</p>
+                </div>
+
+                <div class="grid sm:grid-cols-12 gap-6 sm:gap-8 items-center mt-8">
+                    <div class="sm:col-span-7 space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm sm:text-base font-semibold text-slate-200 mb-2.5">
+                                <span>Annual New Field Officer Hires:</span>
+                                <span id="hire-count-val" class="text-brand-tealLight font-bold text-base sm:text-lg">30 Hires / Year</span>
+                            </div>
+                            <input type="range" id="hire-slider" min="10" max="80" value="30" class="w-full h-3 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-teal">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-5 bg-slate-900/80 border border-slate-700 rounded-xl p-5 sm:p-6 text-center sm:text-left space-y-2">
+                        <div class="text-xs sm:text-sm text-slate-300">Estimated Annual Travel & Venue Savings</div>
+                        <div id="savings-est-val" class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-tealLight">$13,500 USD</div>
+                        <div class="text-xs sm:text-sm text-slate-300 font-semibold">+ 300 Hours Branch Manager Time Saved</div>
+                    </div>
+                </div>
+                
+                <p class="text-xs text-slate-400 italic mt-6 pt-4 border-t border-slate-700/60">
+                    <i class="fa-solid fa-circle-info mr-1"></i> Remark: Illustrative assumption that may vary by country and institution.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 sm:py-24 bg-slate-100 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-14 space-y-4">
+                <span class="text-brand-teal font-heading font-bold text-xs sm:text-sm uppercase tracking-widest bg-white border border-slate-300 px-4 py-1.5 rounded-full">Sustainable Pricing</span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy">Cost-Recovery & Subscription Options</h2>
+                <p class="text-slate-600 text-base sm:text-lg lg:text-xl">Transparent non-profit partner pricing compared against direct enterprise LMS plans.</p>
+            </div>
+
+            <!-- Implementation Startup Banner -->
+            <div class="bg-brand-navy text-white rounded-2xl p-7 sm:p-10 mb-12 sm:mb-14 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 border-l-8 border-l-brand-teal">
+                <div class="flex items-center gap-4 sm:gap-5">
+                    <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-brand-teal/20 text-brand-tealLight flex items-center justify-center text-2xl sm:text-3xl flex-shrink-0">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <div>
+                        <div class="font-heading font-bold text-lg sm:text-2xl text-white">One-Time Startup & Implementation Fee</div>
+                        <p class="text-xs sm:text-base text-slate-300 mt-1">Includes custom branded platform setup, 3-day HR workshop, 1 initial fully developed custom course, and launch support.</p>
+                    </div>
+                </div>
+                <div class="font-heading text-2xl sm:text-4xl font-extrabold text-brand-tealLight whitespace-nowrap self-start md:self-auto">$6,000 USD</div>
+            </div>
+
+            <!-- Two Plan Cards -->
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- Option A: Standalone Portal (With Super Admin) -->
+                <div class="bg-white rounded-2xl p-8 sm:p-9 border border-slate-200 card-shadow flex flex-col justify-between">
+                    <div class="space-y-6 sm:space-y-7">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-slate-100 text-slate-800 text-xs font-extrabold px-3 py-1.5 rounded-full uppercase">Option A</span>
+                            <span class="text-xs sm:text-sm text-brand-navy font-bold bg-slate-100 px-3 py-1 rounded-full">Managed by Good Return</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-brand-navy">Standalone Portal</h3>
+                            <p class="text-xs sm:text-sm text-brand-teal font-bold mt-1.5"><i class="fa-solid fa-key mr-1.5"></i> Includes Full Super Admin System Controls</p>
+                            <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">Dedicated portal environment managed in partnership with Good Return.</p>
+                        </div>
+
+                        <!-- Price Tag -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 sm:p-6 space-y-3">
+                            <div class="flex items-baseline justify-between">
+                                <span class="font-bold text-slate-900 text-sm sm:text-base">Pro Plan (201–300 users)</span>
+                                <span class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-sky">$739 <span class="text-xs sm:text-sm text-slate-500 font-normal">/ mo</span></span>
+                            </div>
+                            <div class="text-xs sm:text-sm text-slate-700 font-bold">$8,868 / year billed annually</div>
+                            <div class="text-xs sm:text-sm text-slate-600 pt-2.5 border-t border-slate-200">
+                                Includes Flexible User Limit (+ $3.00 per additional active user)
+                            </div>
+                            <div class="text-[11px] sm:text-xs text-slate-500 pt-2 border-t border-slate-200/60">
+                                <strong>Note:</strong> Grow Plan option available at $349 / month ($4,188 / year).
+                            </div>
+                        </div>
+
+                        <div class="pt-2 text-xs sm:text-sm text-slate-600 font-semibold italic flex items-center gap-2">
+                            <i class="fa-solid fa-comments text-brand-teal"></i> To discuss details further
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Option B: Private RIF Sub-Portal Package -->
+                <div class="bg-brand-tealBg rounded-2xl p-8 sm:p-9 border-2 border-brand-teal card-shadow relative flex flex-col justify-between">
+                    <div class="absolute -top-3.5 right-6 sm:right-7 bg-brand-teal text-white font-heading text-[10px] sm:text-xs font-bold px-3.5 py-1 rounded-full shadow-md">
+                        RECOMMENDED VALUE
+                    </div>
+
+                    <div class="space-y-6 sm:space-y-7">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-brand-teal/20 text-brand-teal text-xs font-extrabold px-3 py-1.5 rounded-full uppercase">Option B</span>
+                            <span class="text-xs sm:text-sm text-brand-teal font-bold">Good Return Partner Rate</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-brand-navy">Private RIF Sub-Portal</h3>
+                            <p class="text-xs sm:text-sm text-slate-700 font-bold mt-1.5"><i class="fa-solid fa-user-shield mr-1.5 text-slate-500"></i> Standard Sub-Portal (Without Super Admin Feature)</p>
+                            <p class="text-xs sm:text-sm text-brand-teal font-bold mt-1 leading-relaxed">Private, cost-effective sub-portal fully compliant with privacy policies.</p>
+                        </div>
+
+                        <!-- Price Tag -->
+                        <div class="bg-white border border-teal-200 rounded-xl p-5 sm:p-6 space-y-3 shadow-sm">
+                            <div class="flex items-baseline justify-between">
+                                <span class="font-bold text-brand-navy text-sm sm:text-base">Up to 250 Active Users</span>
+                                <span class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-teal">$4,668 <span class="text-xs sm:text-sm text-slate-500 font-normal">/ yr</span></span>
+                            </div>
+                            <div class="text-xs sm:text-sm text-brand-teal font-extrabold">~$389 / month billed annually</div>
+                            <div class="text-xs sm:text-sm text-slate-700 pt-2.5 border-t border-slate-200">
+                                <strong>Unlimited Registered Users</strong> (+ $3.00 per additional active user)
+                            </div>
+                        </div>
+
+                        <div class="pt-2 text-xs sm:text-sm text-brand-teal font-semibold italic flex items-center gap-2">
+                            <i class="fa-solid fa-comments text-brand-teal"></i> To discuss details further
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT BOX: Interested? Contact us! -->
+    <section class="py-12 bg-gradient-to-r from-brand-navy via-brand-navyDark to-slate-900 text-white border-y border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-brand-teal/20 via-brand-navyDark to-brand-sky/20 border-2 border-brand-teal/50 rounded-3xl p-8 sm:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left relative overflow-hidden">
+                <div class="space-y-3 max-w-2xl relative z-10">
+                    <span class="inline-flex items-center gap-2 bg-brand-teal text-white font-heading font-bold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                        <i class="fa-solid fa-handshake"></i> Partner With Us
+                    </span>
+                    <h3 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white">Interested? Contact Us!</h3>
+                    <p class="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed">
+                        Ready to empower your workforce, digitize SOP manuals, and reduce branch training costs? Get in touch with the Good Return & RIF Academy capacity building team today.
+                    </p>
+                </div>
+
+                <div class="relative z-10 flex flex-col sm:flex-row md:flex-col gap-3 w-full sm:w-auto flex-shrink-0">
+                    <a href="mailto:rifacademy@goodreturn.org" class="bg-gradient-to-r from-brand-teal to-teal-500 hover:from-teal-500 hover:to-brand-teal text-white font-heading font-bold text-sm sm:text-base px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-lg shadow-brand-teal/30 transition-all hover:scale-[1.03] flex items-center justify-center gap-2.5 whitespace-nowrap">
+                        <i class="fa-solid fa-paper-plane text-base sm:text-lg"></i>
+                        <span>rifacademy@goodreturn.org</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Knowledge Base -->
+    <section id="faq" class="py-20 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-14 space-y-4">
+                <span class="text-brand-teal font-heading font-bold text-xs sm:text-sm uppercase tracking-widest bg-brand-tealBg border border-teal-200 px-4 py-1.5 rounded-full">
+                    <i class="fa-solid fa-circle-question mr-1.5"></i> Knowledge Base
+                </span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy">Frequently Asked Questions</h2>
+                <p class="text-slate-600 text-base sm:text-lg lg:text-xl">Common questions from HR executives, L&D leaders, and operations managers evaluating RIF Academy.</p>
+            </div>
+
+            <!-- FAQ Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-10 sm:mb-12" id="faq-filters">
+                <button data-cat="all" class="faq-filter-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-teal text-white shadow-sm transition-all cursor-pointer">All Questions</button>
+                <button data-cat="overview" class="faq-filter-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Overview & Fit</button>
+                <button data-cat="roi" class="faq-filter-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Cost & ROI</button>
+                <button data-cat="mobile" class="faq-filter-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Mobile & Offline</button>
+                <button data-cat="features" class="faq-filter-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Features & AI</button>
+                <button data-cat="pricing" class="faq-filter-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Pricing & Tech</button>
+            </div>
+
+            <!-- Accordion List -->
+            <div class="max-w-4xl mx-auto space-y-3.5 sm:space-y-4" id="faq-accordion-container">
+
+                <!-- Q1 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="overview">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">1</span>
+                            What is RIF Academy, and how does it relate to Good Return and TalentLMS?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            RIF (Responsible Inclusive Finance) Academy is an Australian Aid–backed digital learning program created by Good Return specifically for financial service providers (FSPs) in Southeast Asia. It is powered by TalentLMS—a global enterprise learning management system—allowing FSPs to benefit from enterprise software features at non-profit partner rates with full implementation support from Good Return.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="overview">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">2</span>
+                            Is RIF Academy specifically built for Financial Service Providers (FSPs)?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Yes. Unlike generic corporate learning platforms, RIF Academy is tailored specifically for banks, microfinance institutions (MFIs), and financial service providers. Its course structures, workflows, offline mobile features, and compliance analytics are optimized for field loan officers, credit teams, branch managers, and risk personnel.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="overview">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">3</span>
+                            What materials and standard e-courses are available out-of-the-box?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Your implementation includes access to Good Return's core financial sector e-courses—including Credit Risk Evaluation, Responsible Lending, and Financial Literacy Coaching—plus 1 fully customized initial course converted specifically from your FSP’s internal operational policies or manuals.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="roi">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">4</span>
+                            How does e-learning save 60–80% Time & Cost Savings compared to face-to-face training?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white space-y-2">
+                            <p>The cost reduction model is based on global research benchmarks from Brandon Hall Group ("L&D in 2025: Why Companies Are Betting Big on Microlearning", November 2024):</p>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 pl-2">
+                                <li><strong>High Baseline Classroom Costs:</strong> Traditional in-person courses cost ~$14,000 and take up to 57 hours to develop.</li>
+                                <li><strong>Development Timeline Savings:</strong> Digital microlearning cuts course creation timelines by up to 80% and increases delivery efficiency by 55%.</li>
+                                <li><strong>Routine L&D Time Reduction:</strong> Modern L&D tools reduce routine content development tasks by 60%–80%.</li>
+                                <li><strong>Maintenance & Operational Costs:</strong> System maintenance costs drop by 50%–60%, allowing L&D teams to reallocate budget directly to strategic initiatives.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="roi">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">5</span>
+                            How does RIF Academy reduce loan officer field downtime and onboarding time?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Instead of waiting weeks for group classroom schedules or spending 3–5 full days away from clients, new hires log into standardized e-learning modules on Day 1. By spending 15–20 minutes per day on mobile, officers reach full field competency 50% faster without disrupting daily loan disbursements.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="roi">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">6</span>
+                            How does digital learning relieve branch manager overhead?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Branch managers often spend dozens of hours repeating basic orientation lectures for new hires. RIF Academy automates core policy and compliance lectures, freeing branch managers to focus on high-value activities: field coaching, portfolio growth, and client relationship management.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="mobile">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">7</span>
+                            Can field officers complete courses offline in remote rural branches?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Yes! Field loan officers can download entire e-courses while connected to Wi-Fi at their branch office and study or complete quizzes while traveling in rural areas without cellular connection.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="mobile">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">8</span>
+                            Which devices and mobile operating systems are supported?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            RIF Academy is accessible via any web browser on Windows/Mac, as well as native mobile apps for iOS (iPhone/iPad) and Android smartphones and tablets via the TalentLMS app.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="mobile">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">9</span>
+                            How do offline quiz scores and progress sync once a user gets back online?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            All offline progress, video watch times, and quiz attempts are automatically encrypted and saved locally. As soon as the smartphone reconnects to 4G/Wi-Fi, scores sync seamlessly to the central HR dashboard.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="mobile">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">10</span>
+                            How are bite-sized micro-learning modules structured for busy field staff?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Modules are broken down into 3- to 7-minute lessons with short videos, interactive infographics, and 3-question knowledge checks. This allows staff to learn incrementally during downtime between client visits.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="features">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">11</span>
+                            Can we white-label the portal with our own FSP logo, colors, and domain?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Yes! Custom branding includes applying your FSP’s corporate logo, brand color palette, custom homepage graphics, and custom domain URL with SSL encryption. Complete white-labeling removes external platform branding.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="features">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">12</span>
+                            What is TalentCraft, and how do AI authoring tools assist our HR team?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            TalentCraft Premium is a built-in AI content generation suite. It allows your HR team to upload policy PDFs and instantly generate interactive lessons, automated multiple-choice quizzes, video captions, AI thumbnails, multi-language translations, and AI Coach guidance without hiring external e-learning developers.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="features">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">13</span>
+                            How does the multi-branch network architecture work for branch supervisors?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            You can organize your portal into sub-teams representing regional branch offices. Branch Managers are assigned Group Supervisor permissions, allowing them to view progress, test scores, and compliance metrics for their specific staff without granting them administrative access to other branches.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="features">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">14</span>
+                            Does the platform include gamification, points, and automated certificates?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Yes! The Learning Playground includes points, achievement badges, and branch leaderboards to boost learner engagement. Upon passing course evaluations, PDF completion certificates with custom digital signatures and expiration dates are automatically issued.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="pricing">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">15</span>
+                            What is the difference between Option A (Standalone) and Option B (Sub-Portal)?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            <strong>Option A (Standalone Portal):</strong> Includes full Super Admin system controls and dedicated portal environment ($739/mo for Pro 201-300 users or $349/mo for Grow plan).<br>
+                            <strong>Option B (Private Sub-Portal Package):</strong> Highly cost-effective sub-portal managed by Good Return ($4,668/yr or ~$389/mo for up to 250 active users) with unlimited registered users, full privacy compliance, and dedicated helpdesk support.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="pricing">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">16</span>
+                            What does the $6,000 USD One-Time Startup & Implementation Fee include?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            The startup fee covers complete custom branded portal configuration, SSO setup, custom domain SSL integration, a hands-on 3-Day Workshop for your HR/L&D team, instructional design coaching, 1 initial fully developed custom e-course, and launch assistance.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="pricing">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">17</span>
+                            What hands-on enablement is provided during the 3-Day HR & Trainer Workshop?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Good Return's learning specialists train your HR and internal L&D staff on portal administration, branch sub-team setups, TalentCraft AI content authoring, test creation, instructional design best practices, and custom report exports so your team can run the portal independently.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="pricing">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">18</span>
+                            Can RIF Academy integrate with our existing HRIS or Single Sign-On (SSO)?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Yes. The platform supports enterprise Single Sign-On (SAML 2.0 / Active Directory / Okta), REST API endpoints for automatic employee data synchronization with your internal HRIS, LTI 1.3 for external tools, and native HubSpot CRM synchronization.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden card-shadow transition-all" data-category="pricing">
+                    <button class="faq-toggle w-full text-left p-5 sm:p-7 flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-lg text-brand-navy hover:text-brand-teal transition-colors cursor-pointer">
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 sm:w-8 h-7 sm:h-8 rounded-xl bg-teal-100 text-brand-teal text-xs sm:text-sm flex items-center justify-center font-bold flex-shrink-0">19</span>
+                            How long does implementation typically take?
+                        </span>
+                        <i class="fa-solid fa-chevron-down faq-icon text-slate-400 text-sm sm:text-base transition-transform duration-300 flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer hidden border-t border-slate-200/60">
+                        <div class="faq-answer-content p-5 sm:p-7 text-xs sm:text-base text-slate-600 leading-relaxed bg-white">
+                            Typical implementation takes 2–6 weeks, depending on the level of customization, branding, system integrations (such as SSO or HRIS), and course development requirements. A standard deployment with branding and initial course setup can usually be completed within a few weeks, while more customized enterprise implementations may require additional time.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-navyDark text-slate-300 text-xs py-6 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="rif+gr_logo.png" alt="Good Return & RIF Academy Logo" class="h-9 w-auto object-contain" onerror="this.onerror=null; this.src='https://placehold.co/160x45/081728/2dd4bf?text=Good+Return+|+RIF+Academy';">
+            </div>
+
+            <div class="text-center sm:text-right text-slate-400 text-xs flex flex-col sm:items-end gap-1">
+                <p>&copy; 2026 RIF Academy. All rights reserved.</p>
+                <p>Contact: <a href="mailto:rifacademy@goodreturn.org" class="text-brand-tealLight font-medium hover:underline">rifacademy@goodreturn.org</a> | Website by <a href="https://www.rifacademy.org/" target="_blank" class="text-brand-tealLight font-medium hover:underline">RIF Academy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // ROI Estimator Slider Logic
+        const hireSlider = document.getElementById('hire-slider');
+        const hireCountVal = document.getElementById('hire-count-val');
+        const savingsEstVal = document.getElementById('savings-est-val');
+
+        if (hireSlider) {
+            hireSlider.addEventListener('input', (e) => {
+                const count = parseInt(e.target.value);
+                hireCountVal.textContent = `${count} Hires / Year`;
+                
+                // Est savings calculation formula
+                const estSavings = count * 450;
+                savingsEstVal.textContent = `$${estSavings.toLocaleString()} USD`;
+            });
+        }
+
+        // FAQ Accordion Handlers
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const answer = toggle.nextElementSibling;
+                const icon = toggle.querySelector('.faq-icon');
+                
+                const isCurrentlyHidden = answer.classList.contains('hidden');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+                document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180'));
+                
+                // Toggle clicked answer
+                if (isCurrentlyHidden) {
+                    answer.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+
+        // FAQ Category Filter Handlers
+        const filterBtns = document.querySelectorAll('.faq-filter-btn');
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const cat = btn.getAttribute('data-cat');
+                
+                // Active button styling
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-teal', 'text-white', 'shadow-sm');
+                    b.classList.add('bg-slate-100', 'text-slate-700');
+                });
+                btn.classList.remove('bg-slate-100', 'text-slate-700');
+                btn.classList.add('bg-brand-teal', 'text-white', 'shadow-sm');
+
+                // Filter items
+                faqItems.forEach(item => {
+                    const itemCat = item.getAttribute('data-category');
+                    if (cat === 'all' || itemCat === cat) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
